@@ -8,7 +8,6 @@ import {
 } from "../controllers/postController";
 import { adminAuth } from '../middleware/adminAuth';
 
-
 const router = express.Router();
 
 router.get("/", getAllPosts);
