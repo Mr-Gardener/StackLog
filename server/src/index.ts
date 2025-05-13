@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import postRoutes from "./routes/postRoutes"
+import commentRoutes from './routes/commentRoutes'
 
 // Load env variables
 dotenv.config();
@@ -19,7 +20,10 @@ app.use(express.json());
 app.get("/", (_req, res) => {
     res.send("API is running...");
 });
+
 app.use("/api/posts", postRoutes);
+
+app.use("/api/comments", commentRoutes)
 
 // DB + Server
 mongoose

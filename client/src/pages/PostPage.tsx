@@ -1,4 +1,6 @@
 import { useLocation } from "react-router-dom";
+import CommentForm from "./CommentForm";
+import CommentList from "./CommentList";
 
   const PostPage = () => {
     
@@ -22,6 +24,9 @@ import { useLocation } from "react-router-dom";
           </span>
         ))}
       </div>
+
+      <CommentForm postId={post._id} />
+      <CommentList postId={post._id} />
 
       </div>
     );

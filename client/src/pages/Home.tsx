@@ -2,26 +2,33 @@
 
 import NavBar from "../components/NavBar";
 import PostCard from "../components/PostCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
+interface Post {
+    _id: string;
+    title: string;
+    content: string;
+    tags: string[];
+    coverImage: string;
+}
 
 const Home = () => {
 
-    const dummyPosts = [
-        {
-          id: "1",
-          title: "Getting Started with React 1",
-          content: "Learn the basics of building UIs with React.dhwudhwjdwjdiwbdujwpodjiown ujwnijoxk wjsuijs9 uisnisjnk",
-          tags: ["react", "frontend"],
-          coverImage: "https://via.placeholder.com/300x150",
-        },
-        {
-          id: "2",
-          title: "Exploring AI Agents 3",
-          content: "Dive into AI agents and multi-agent systems.",
-          tags: ["AI", "agents"],
-          coverImage: "https://via.placeholder.com/300x150",
-        },
-      ];
+    const [posts, setPosts] = useState<Post[]>([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+          try {
+            const res = await axios.get('http://localhost:5000/api/posts');
+            setPosts(res.data); 
+          } catch (err) {
+            console.error('Failed to fetch posts:', err);
+          }
+        };
+
+        fetchPosts();
+      }, []);
 
     return(
         <main>
@@ -34,17 +41,16 @@ const Home = () => {
 
             <section>
                 <article>
-                    {dummyPosts.map((post) => (
+                    {posts.map((post) => (
                         <PostCard
-                        key={post.id}
-                        id={post.id}
+                        key={post._id}
+                        id={post._id}
                         title={post.title}
                         excerpt={post.content}
                         coverImage={post.coverImage}
                         tags={post.tags}
                         />
                     ))}
-
                 </article>
             </section>
         </main>

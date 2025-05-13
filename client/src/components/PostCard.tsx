@@ -20,11 +20,11 @@ const PostCard: FC<PostCardProps> = ({ id, title, excerpt, coverImage, tags}) =>
             )}
             <div className="p-4">
                 <Link to={`/posts/${id}`} 
-                state={{ post: {id, title, excerpt, coverImage, tags} }}
+                state={{ post: {_id: id, title, excerpt, coverImage, tags} }}
                 >
                 <h2 className="text-xl font-semibold text-blue-700 hover:underline">{title}</h2>
                 </Link>
-                <p className="text-gray-600 mt-2 line-clamp-3">{excerpt}</p>
+                <p className="text-gray-600 mt-2 line-clamp-3">{excerpt.slice(0, 50)}.....</p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
                     {tags.map((tag) =>(

@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get("/", getAllPosts);
 router.get("/:id", getPost);
-router.post("/", adminAuth, createPost);
+router.post("/", createPost);
 router.put("/:id",adminAuth, updatePost);
 router.delete("/:id",adminAuth, deletePost);
 
